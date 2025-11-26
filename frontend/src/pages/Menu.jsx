@@ -21,6 +21,12 @@ const [cartItems, setCartItems] = useState([]);
 
     getMenuItems();
   }, []);
+
+const removeFromCart = (indexToRemove) => {
+  setCartItems(prevItems => 
+    prevItems.filter((_, index) => index !== indexToRemove)
+  )
+}
 const checkoutCart = async () => {
   if (cartItems.length === 0) {
     alert("Your cart is empty.");
@@ -70,16 +76,25 @@ const checkoutCart = async () => {
         ) : (
           <ul className="cart-item-list">
             {cartItems.map((item, index) => (
-              <h4 key={index} className="cart-item">
+              <li key={index} className="items">
+                <div className="cart-content">
+                <h4 key={index} className="cart-item">
                 {item.name} - ${item.price.toFixed(2)}
               </h4>
+              <span className="material-symbols-outlined"
+              onClick={() => removeFromCart(index)}
+              >
+                close
+              </span>
+              </div>
+              </li>
             ))}
           </ul>
         )}
         <div className="cart-summary">
         <div className="cart-total">
-          <span>Total: </span>
-          <span>
+          <span className="total">Total: </span>
+          <span className="price">
             ${cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)}
           </span>
         </div>

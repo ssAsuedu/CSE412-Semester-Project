@@ -14,10 +14,12 @@
     box-sizing: border-box;
     background: #fff;
     overflow: hidden;
+    border: 2px solid #8C1D40;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .menu-item-name {
-    font-size: 1em;
+    font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 4px;
     text-align: center;
@@ -25,12 +27,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #8C1D40;
 }
 
 .menu-item-description {
     font-size: 0.8em;
     text-align: center;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -38,6 +41,7 @@
     -webkit-line-clamp: 4; /* Allow up to 4 lines */
     -webkit-box-orient: vertical;
     white-space: normal;
+    font-style: italic;
 }
 
 .menu-item-price {
@@ -52,4 +56,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.menu-card button {
+    border: none;
+    background-color: #FFC627;
+    padding: 5px 8px 5px 8px;
+    border-radius: 8px;
+    color: #8C1D40;
+    font-weight: 600;
+}
+
+.menu-card button {
+    cursor: pointer;
 }
