@@ -16,7 +16,14 @@ export const Login = () => {
     try {
       const res = await login(username, password);
       if (res && res.ok) {
-        navigate('/menu');
+        localStorage.setItem('user', JSON.stringify(res.user));
+        if (res.userType === 'administratoruser') {
+          navigate('/manageorders');
+        } else if (res.userType === 'customeruser') {
+          navigate('/menu');
+        } else {
+          setError('Unknown user type');
+        }
       } else {
         setError(res && res.error ? res.error : 'Invalid credentials');
       }
@@ -32,7 +39,7 @@ export const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 12 }}>
-          <label htmlFor="username" style={{ display: 'block', marginBottom: 6 }}>Username</label>
+          <label htmlFor="username" style={{ display: 'block', marginBottom: 6 }}>Email</label>
           <input
             id="email"
             type="text"
