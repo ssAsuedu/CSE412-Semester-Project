@@ -50,7 +50,7 @@ app.post('/login', async (req, res) => {
           return res.status(500).json({ error: 'Server error' });
         }
 
-
+        const match = stored === password;
         if (match) {
           // normalize id field (Administrator table uses adminID, customer table uses userId / userid)
           const idCandidates = ['adminid', 'adminID', 'userid', 'userId', 'id'];
@@ -86,6 +86,91 @@ app.post('/login', async (req, res) => {
     console.error('Error in /login:', err);
     return res.status(500).json({ error: err.message });
   }
+});
+
+app.get('/menu-items', async (req, res) => {
+ 
+  try {
+    const result = await pool.query('SELECT * FROM public.menuitem');
+    return res.json(result.rows);
+  } catch (err) {
+    console.error('Error in /menu-items:', err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+
+app.post('/checkout-cart', async (req, res) => {
+  console.log('Received request to /checkout-cart', req.body);
+  const { userid, totalprice, orderdate, status, items } = req.body;
+  if (!userid || !totalprice || !orderdate || !items || !Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: 'Missing required order fields' });
+  }
+  try {
+    const result = await pool.query(
+      `INSERT INTO public.neworder (userid, totalprice, orderdate, status, items)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING *`,
+      [userid, totalprice, orderdate, status || 'Pending', items]
+    );
+    res.json({ ok: true, order: result.rows[0] });
+  } catch (err) {
+    console.error('Error in /checkout-cart:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/orders', async (req, res) => {
+  console.log('Received request to /orders', req.query);
+  const userId = req.query.userId;
+  if (!userId) {
+    return res.status(400).json({ error: 'userId query parameter is required' });
+  }
+  try {
+    const result = await pool.query(
+      `SELECT * FROM public.neworder WHERE userid = $1 ORDER BY orderdate DESC`,
+      [userId]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error in /orders:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/update-order-status', async (req, res) => {
+  console.log('Received request to /update-order-status', req.body);
+  const { orderid } = req.body;
+  if (!orderid) {
+    return res.status(400).json({ error: 'orderid is required' });
+  }
+  try {
+    const result = await pool.query(
+      `UPDATE public.neworder SET status = 'Complete' WHERE orderid = $1 RETURNING *`,
+      [orderid]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json({ ok: true, order: result.rows[0] });
+  } catch (err) {
+    console.error('Error in /update-order-status:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/all-orders', async (req, res) => {
+  console.log('Received request to /all-orders', req.query);
+  try {
+    const result = await pool.query(
+      `SELECT * FROM public.neworder ORDER BY orderid DESC`
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Error in /all-orders:', err);
+    res.status(500).json({ error: err.message });
+  }
+  
 });
 
 app.listen(5052, () => console.log('Server running on port 5052'));

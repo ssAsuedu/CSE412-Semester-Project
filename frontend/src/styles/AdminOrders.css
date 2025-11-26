@@ -1,0 +1,20 @@
+.page-title {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.orders-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.orders-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-items: center;
+  width: 100%;
+  max-width: 1100px;
+}
