@@ -3,7 +3,8 @@
   min-width: 100%;
   background: #fff;
   color: #000;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
+  box-shadow: 0 4px 12px rgba(140, 29, 64, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,9 +39,22 @@
 }
 
 .nav-btn:hover {
-  background: #f0f0f0;
+  color: #8C1D40;
+  text-decoration: underline;
 }
 
 .logout-btn {
+  border: none;
+  background-color: #8C1D40;
   font-weight: bold;
+  color: white;
+  border-radius: 999px;
+  padding: 8px 16px;
 }
+
+.logout-btn:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #66152f;
+}
+

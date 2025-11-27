@@ -13,11 +13,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <button className="nav-btn" onClick={() => navigate('/menu')}>Menu</button>
-        <button className="nav-btn" onClick={() => navigate('/orders')}>Orders</button>
+        <a className="nav-btn" onClick={() => navigate('/menu')}>Menu</a>
+        <a className="nav-btn" onClick={() => navigate('/orders')}>Orders</a>
       </div>
       <div className="navbar-right">
-        <button className="nav-btn logout-btn" onClick={handleLogout}>Log Out</button>
+        <button className="logout-btn" onClick={handleLogout}>Log Out</button>
       </div>
     </nav>
   );
