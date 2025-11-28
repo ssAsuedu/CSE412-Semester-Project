@@ -1,0 +1,13 @@
+.stats-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 120px;
+    padding: 20px;
+}
+.stats{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

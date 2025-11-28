@@ -101,7 +101,7 @@ app.get('/menu-items', async (req, res) => {
 
 
 app.post('/checkout-cart', async (req, res) => {
-  console.log('Received request to /checkout-cart', req.body);
+  //console.log('Received request to /checkout-cart', req.body);
   const { userid, totalprice, orderdate, status, items } = req.body;
   if (!userid || !totalprice || !orderdate || !items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'Missing required order fields' });
@@ -121,7 +121,7 @@ app.post('/checkout-cart', async (req, res) => {
 });
 
 app.get('/orders', async (req, res) => {
-  console.log('Received request to /orders', req.query);
+  //console.log('Received request to /orders', req.query);
   const userId = req.query.userId;
   if (!userId) {
     return res.status(400).json({ error: 'userId query parameter is required' });
@@ -160,7 +160,7 @@ app.post('/update-order-status', async (req, res) => {
 });
 
 app.get('/all-orders', async (req, res) => {
-  console.log('Received request to /all-orders', req.query);
+  //console.log('Received request to /all-orders', req.query);
   try {
     const result = await pool.query(
       `SELECT * FROM public.neworder ORDER BY orderid DESC`
