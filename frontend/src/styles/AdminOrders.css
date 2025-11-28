@@ -18,3 +18,45 @@
   width: 100%;
   max-width: 1100px;
 }
+
+.status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.status.pending {
+  background-color: #fff4e5;
+  color: #b36b00;
+  border: 1px solid #b36b00;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.status.complete,
+.status.completed {
+  background-color: #e7f8ee;
+  color: #508f5f;
+  border: 1px solid #1e7e34;
+}
+
+.update-status-button {
+  background-color: #8c1d40;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.update-status-button:hover {
+  background-color: #9e3a5b;
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
