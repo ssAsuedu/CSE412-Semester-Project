@@ -21,7 +21,7 @@ export const OrderCard = ({ order }) => {
     <div className="order-card">
       <h4>Order #{order.orderid}</h4>
       <p>Date: {formattedDate}</p>
-      <p>Total: ${order.totalprice.toFixed(2)}</p>
+      <p>Total: ${Number(order.totalprice).toFixed(2)}</p>
       <span className={statusClass}>{order.status}</span>
     </div>
   )

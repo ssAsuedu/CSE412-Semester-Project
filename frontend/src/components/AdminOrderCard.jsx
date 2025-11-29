@@ -33,7 +33,7 @@ export const AdminOrderCard = ({ order, onStatusUpdate }) => {
     <div className={`order-card ${cardClass}`}>
       <h3>Order ID: {order.orderid}</h3>
       <p>User ID: {order.userid}</p>
-      <p>Total Price: ${order.totalprice.toFixed(2)}</p>
+      <p>Total Price: ${Number(order.totalprice).toFixed(2)}</p>
       <p>Order Date: {formattedDate}</p>
       <p>Status: <span className={`status ${statusClass}`}>{order.status}</span></p>
       {order.status === 'Pending' && (

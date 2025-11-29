@@ -21,7 +21,8 @@ const AdminDashboard = () => {
       setTotalOrders(orders.length);
       setTotalActiveOrders(orders.filter(order => order.status === 'Pending').length);
       setTotalCompletedOrders(orders.filter(order => order.status === 'Complete').length);
-      setTotalRevenue(orders.reduce((acc, order) => acc + order.totalprice, 0));
+      const revenue = orders.reduce((acc,order) => acc + Number(order.totalprice ?? 0), 0); 
+      setTotalRevenue(revenue);
       const sorted = [...orders]
         .filter(order => order.orderdate && !isNaN(Number(order.totalprice)))
         .sort((a, b) => new Date(a.orderdate) - new Date(b.orderdate));
@@ -49,37 +50,67 @@ const AdminDashboard = () => {
   }, []);
   
   return (
-    <div>
-      <AdminNavbar />
-      <div className="stats-container">
-        <div className="line-chart" style={{ width: 900, height: 600 }}>
-          <LineChart
-            xAxis={[{
-              data: chartData.dates,
-              label: 'Date',
-              scaleType: 'time',
-              tickNumber: 4,
-              min: minDate,
-              max: maxDate,
-              valueFormatter: (value) => {
-                const d = new Date(value);
-                return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
-              }
-            }]}
-            series={[{ data: chartData.revenues, label: 'Cumulative Revenue ($)' }]}
-            width={900}
-            height={600}
-          />
-        </div>
-        <div className='stats'>
-          <h2>Total Revenue: ${totalRevenue}</h2>
-          <h2>Total Orders: {totalOrders}</h2>
-          <h2>Active Orders: {totalActiveOrders}</h2>
-          <h2>Completed Orders: {totalCompletedOrders}</h2>
+  <div className="admin-dashboard">
+    <AdminNavbar />
+
+    <div className="stats-container">
+      {/*the chart on the left side of the dashboard*/}
+      <div className="line-chart-card">
+        <h2 className="section-title">Revenue Over Time</h2>
+        <LineChart
+          xAxis={[{
+            data: chartData.dates,
+            label: 'Date',
+            scaleType: 'time',
+            tickNumber: 4,
+            min: minDate,
+            max: maxDate,
+            valueFormatter: (value) => {
+              const d = new Date(value);
+              return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
+            }
+          }]}
+          series={[{ data: chartData.revenues, label: 'Cumulative Revenue ($)' }]}
+          width={900}
+          height={400}
+        />
+      </div>
+
+      {/*summary stats on the right side*/}
+      <div className="stats-panel">
+        <h2 className="section-title">Operations Summary</h2>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <span className="stat-label">Total Revenue</span>
+            <span className="stat-value">
+              ${totalRevenue.toFixed(2)}
+            </span>
+          </div>
+
+          <div className="stat-card">
+            <span className="stat-label">Total Orders</span>
+            <span className="stat-value">{totalOrders}</span>
+          </div>
+
+          <div className="stat-card">
+            <span className="stat-label">Active Orders</span>
+            <span className="stat-value stat-pill stat-pill--active">
+              {totalActiveOrders}
+            </span>
+          </div>
+
+          <div className="stat-card">
+            <span className="stat-label">Completed Orders</span>
+            <span className="stat-value stat-pill stat-pill--complete">
+              {totalCompletedOrders}
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  )
+  </div>
+);
+
 }
 
 export default AdminDashboard;
