@@ -1,13 +1,106 @@
-.stats-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 120px;
-    padding: 20px;
+.admin-dashboard {
+  min-height: 100vh;
+  background: #f6f2f6; 
+  display: flex;
+  flex-direction: column;
 }
-.stats{
-    display: flex;
+
+/* Main layout: chart on left, stats panel on right */
+.stats-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 48px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Chart card */
+.line-chart-card {
+  flex: 2;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Stats card on the right */
+.stats-panel {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #3b1a3d; /* deep maroon-ish */
+}
+
+/* Stats grid inside the panel */
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #faf6ff;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7a7585;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2b1230;
+}
+
+/* Status “pill” style */
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 1rem;
+}
+
+.stat-pill--active {
+  background: #fff2d6;
+  color: #b86a00;
+}
+
+.stat-pill--complete {
+  background: #e6f6ea;
+  color: #1f7a3a;
+}
+
+/* Stack on smaller screens */
+@media (max-width: 900px) {
+  .stats-container {
     flex-direction: column;
-    gap: 20px;
+  }
+
+  .line-chart-card,
+  .stats-panel {
+    width: 100%;
+  }
 }

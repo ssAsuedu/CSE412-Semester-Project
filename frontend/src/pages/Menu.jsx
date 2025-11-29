@@ -38,7 +38,7 @@ const checkoutCart = async () => {
     return;
   }
   const items = cartItems.map(item => item.menuid); // Use menuid from each menu item
-  const totalprice = cartItems.reduce((total, item) => total + item.price, 0);
+  const totalprice = cartItems.reduce((total, item) => total + Number(item.price), 0);
   const orderdate = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
   try {
@@ -75,12 +75,15 @@ const checkoutCart = async () => {
           <p className="empty-cart-message">Your cart is empty.</p>
         ) : (
           <ul className="cart-item-list">
-            {cartItems.map((item, index) => (
+            {cartItems.map((item, index) => {
+              console.log("cart item price:", item.price, typeof item.price);
+              
+              return(
               <li key={index} className="items">
                 <div className="cart-content">
                 <h4 key={index} className="cart-item">
-                {item.name} - ${item.price.toFixed(2)}
-              </h4>
+                  {item.name} - ${Number(item.price).toFixed(2)}
+                </h4>
               <span className="material-symbols-outlined"
               onClick={() => removeFromCart(index)}
               >
@@ -88,14 +91,14 @@ const checkoutCart = async () => {
               </span>
               </div>
               </li>
-            ))}
+            );})}
           </ul>
         )}
         <div className="cart-summary">
         <div className="cart-total">
           <span className="total">Total: </span>
           <span className="price">
-            ${cartItems.reduce((total, item) => total + item.price, 0).toFixed(2)}
+            ${cartItems.reduce((total, item) => total + Number(item.price), 0).toFixed(2)}
           </span>
         </div>
         <button className="checkout-button" onClick={() => checkoutCart()}>Checkout</button>
