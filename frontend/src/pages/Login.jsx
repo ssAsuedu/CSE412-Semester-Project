@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api';
+import "../styles/Login.css"
 
 export const Login = () => {
   const [username, setUsername] = useState('');
@@ -35,8 +36,9 @@ export const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: 420, margin: '48px auto', padding: 20, border: '1px solid #eee', borderRadius: 6 }}>
-      <h2>Login</h2>
+    <div className="login-center">
+      <div className="login-form" >
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 12 }}>
           <label htmlFor="username" style={{ display: 'block', marginBottom: 6 }}>Email</label>
@@ -46,7 +48,8 @@ export const Login = () => {
             value={username}
             onChange={e => setUsername(e.target.value)}
             required
-            style={{ width: '100%', padding: 8 }}
+            className="email-field"
+            style={{padding: 8 }}
           />
         </div>
 
@@ -58,17 +61,20 @@ export const Login = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
-            style={{ width: '100%', padding: 8 }}
+            className="password-field"
+            style={{padding: 8 }}
           />
         </div>
 
         {error && <div style={{ color: 'red', marginBottom: 12 }}>{error}</div>}
 
-        <button type="submit" disabled={loading} style={{ padding: '8px 16px' }}>
-          {loading ? 'Logging in...' : 'Submit'}
+        <button className="login-button" type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>
+    </div>
+    
   );
 };
 

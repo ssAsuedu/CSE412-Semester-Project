@@ -1,0 +1,83 @@
+.login-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #8C1D40 0%, #A63A56 40%, #FFC627 120%);
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    background-color: white;
+    padding-left: 80px;
+    padding-right: 90px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+}
+
+.login-form input {
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    font-size: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.email-field:focus {
+    outline: none;
+    border: 2px solid #8C1D40;
+}
+
+.password-field:focus {
+  outline: none;
+  border: 2px solid #FFC627;
+}
+/* 
+source for the button styles:https://getcssscan.com/css-buttons-examples
+*/
+.login-button {
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.login-button:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.login-button:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
