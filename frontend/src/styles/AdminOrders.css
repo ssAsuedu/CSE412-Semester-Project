@@ -60,3 +60,42 @@
   transform: scale(1.05);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
+
+@media (max-width: 768px) {
+  .admin-orders-full-page {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .orders-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .orders-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .order-card {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1200px) {
+
+  .order-card {
+    max-width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .update-status-button {
+    width: 100%;
+    text-align: center;
+  }
+}

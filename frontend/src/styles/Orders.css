@@ -1,18 +1,18 @@
 .orders-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;     
+    justify-content: center;
     align-items: flex-start;
     margin-top: 120px;
-    gap: 100px;                 
+    gap: 100px;
 }
 
 .active-orders-container,
 .past-orders-container {
     display: flex;
     flex-direction: column;
-    align-items: center;       
-    width: 350px;                
+    align-items: center;
+    width: 350px;
 }
 
 .active-orders-container h3,
@@ -30,4 +30,41 @@
     padding: 0;
     margin: 0;
     width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .orders-container {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .active-orders-container,
+    .past-orders-container {
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        justify-content: center;
+        justify-items: center;
+
+    }
+
+    .orders-full-page {
+        overflow-x: hidden;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1200px) {
+    .orders-container {
+        margin-top: 40px;
+        gap: 20px;
+    }
+
+    .active-orders-container h3,
+    .past-orders-container h3 {
+        font-size: 1.1rem;
+    }
 }

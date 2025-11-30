@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminNavbar from '../components/AdminNavbar'
 import { fetchAllOrders } from '../api'
 import AdminOrderCard from '../components/AdminOrderCard'
@@ -26,12 +26,12 @@ export const AdminOrders = () => {
         order.orderid === orderId ? { ...order, status: newStatus } : order
       )
     );
-  
+
     loadOrders();
   };
 
   return (
-    <div>
+    <div className="admin-orders-full-page">
       <AdminNavbar />
       <h2 className="page-title">Manage Orders</h2>
       <div className="orders-container">
@@ -50,6 +50,7 @@ export const AdminOrders = () => {
         )}
       </div>
     </div>
+
   )
 }
 export default AdminOrders;
