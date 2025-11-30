@@ -172,6 +172,26 @@ app.get('/all-orders', async (req, res) => {
   }
   
 });
+app.delete('/delete-order', async (req, res) => {
+  console.log('Received request to /delete-order', req.query);
+  const { orderid } = req.query;
+  if (!orderid) {
+    return res.status(400).json({ error: 'orderid is required' });
+  }
+  try {
+    const result = await pool.query(
+      `DELETE FROM public.neworder WHERE orderid = $1 RETURNING *`,
+      [orderid]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json({ ok: true, order: result.rows[0] });
+  } catch (err) {
+    console.error('Error in /delete-order:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(5052, () => console.log('Server running on port 5052'));
 

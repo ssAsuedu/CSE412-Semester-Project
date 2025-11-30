@@ -1,6 +1,6 @@
 import React from 'react'
 import "../styles/AdminOrderCard.css";
-import { updateOrderStatus } from "../api.js"
+import { updateOrderStatus, deleteOrder } from "../api.js"
 
 export const AdminOrderCard = ({ order, onStatusUpdate }) => {
   const formattedDate = order.orderdate
@@ -14,10 +14,20 @@ export const AdminOrderCard = ({ order, onStatusUpdate }) => {
     try {
       await updateOrderStatus(order.orderid);
       if (onStatusUpdate) {
-        onStatusUpdate(); // Correct prop name
+        onStatusUpdate(); 
       }
     } catch (error) {
       console.error('Error updating order status:', error);
+    }
+  };
+  const handleDelete = async () => {
+    try {
+      await deleteOrder(order.orderid);
+      if (onStatusUpdate) {
+        onStatusUpdate(); 
+      }
+    } catch (error) {
+      console.error('Error deleting order:', error);
     }
   };
   var cardClass;
@@ -39,6 +49,7 @@ export const AdminOrderCard = ({ order, onStatusUpdate }) => {
       {order.status === 'Pending' && (
         <button className="update-status-button" onClick={handleMarkComplete}>Mark Complete</button>
       )}
+      <button className="delete-order-button" onClick={handleDelete}>Delete Order</button>
     </div>
   )
 }
