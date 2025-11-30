@@ -81,4 +81,17 @@ export async function updateOrderStatus(orderId) {
     }
     return data;
 }
+export async function deleteOrder(orderId) {
+    const res = await fetch(`http://localhost:5052/delete-order?orderid=${orderId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderid: orderId }),
+    });
+    const data = await res.json().catch(() => null);
+    if (!res.ok) {
+        const msg = data && data.error ? data.error : `HTTP ${res.status}`;
+        throw new Error(`Failed to delete order: ${msg}`);
+    }
+    return data;
+}
 

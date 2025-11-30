@@ -1,0 +1,17 @@
+.delete-order-button{
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    width: 135px;
+    transition: all 0.3s ease-in-out;
+}
+.delete-order-button:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
