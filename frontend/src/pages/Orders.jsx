@@ -35,34 +35,36 @@ const Orders = () => {
   return (
     <>
       <Navbar />
-      <div className="orders-container" style={{ padding: 24 }}>
-        <div className="active-orders-container">
-        <h3>Active Orders</h3>
-        {activeOrders.length === 0 ? (
-          <p>No active orders.</p>
-        ) : (
-          <ul>
-            {activeOrders.map(order => (
-           
-                <OrderCard order={order} key={order.orderid} />
-              
-            ))}
-          </ul>
-        )}
-        </div>
+      <div className="orders-full-page">
+        <div className="orders-container" style={{ padding: 24 }}>
+          <div className="active-orders-container">
+            <h3>Active Orders</h3>
+            {activeOrders.length === 0 ? (
+              <p>No active orders.</p>
+            ) : (
+              <ul>
+                {activeOrders.map(order => (
+
+                  <OrderCard order={order} key={order.orderid} />
+
+                ))}
+              </ul>
+            )}
+          </div>
           <div className="past-orders-container">
-        <h3>Past Orders</h3>
-        {pastOrders.length === 0 ? (
-          <p>No past orders.</p>
-        ) : (
-          <ul>
-            {pastOrders.map(order => (
-            
-                <OrderCard order={order} key={order.orderid} />
-        
-            ))}
-          </ul>
-        )}
+            <h3>Past Orders</h3>
+            {pastOrders.length === 0 ? (
+              <p>No past orders.</p>
+            ) : (
+              <ul>
+                {pastOrders.map(order => (
+
+                  <OrderCard order={order} key={order.orderid} />
+
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </>
