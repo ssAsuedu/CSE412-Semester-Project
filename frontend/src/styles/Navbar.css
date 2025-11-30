@@ -19,11 +19,15 @@
 
 .navbar-left {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
 }
 
 .navbar-right {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
 }
 
@@ -62,5 +66,19 @@
   height: 55px;
   width: auto; 
   cursor: pointer; 
-  margin-right: 16px; 
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 10px;
+  }
+  .navbar-left {
+    gap: 10px;
+  }
+  .nav-btn {
+    padding: 0;
+  }
+  .navbar-logo {
+    width: 70px;
+  }
 }
