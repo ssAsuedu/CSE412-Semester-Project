@@ -58,17 +58,19 @@ const checkoutCart = async () => {
   return (
     <>
     <Navbar />
+    
     <div className='top-level-menu-container'>
     <div className='menu-container'>
       <h2 className="menu-title">Menu</h2>
       {error && <div className="error-message">{error}</div>}
       <ul className="menu-list">
         {menuItems.map(item => (
-            <MenuCard key={item.id} item={item} setCartItems={setCartItems} />
+            <MenuCard key={item.menuid} item={item} setCartItems={setCartItems} />
         ))}
       </ul>
     </div>
     <div>
+      
        <div className="cart-container">
         <h2 className="cart-title">Shopping Cart</h2>
         {cartItems.length === 0 ? (
@@ -77,7 +79,7 @@ const checkoutCart = async () => {
           <ul className="cart-item-list">
             {cartItems.map((item, index) => {
               console.log("cart item price:", item.price, typeof item.price);
-              
+              console.log("Cart length:", cartItems.length);
               return(
               <li key={index} className="items">
                 <div className="cart-content">
@@ -103,9 +105,10 @@ const checkoutCart = async () => {
         </div>
         <button className="checkout-button" onClick={() => checkoutCart()}>Checkout</button>
         </div>
+        </div>
       </div>
     </div>
-    </div>
+    
     </>
   )
 }
