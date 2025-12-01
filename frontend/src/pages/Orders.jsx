@@ -57,10 +57,10 @@ const Orders = () => {
               <p>No past orders.</p>
             ) : (
               <ul>
-                {pastOrders.map(order => (
-
-                  <OrderCard order={order} key={order.orderid} />
-
+                {activeOrders.map(order => (
+                  <li key={order.orderid} className="order-item">
+                    <OrderCard order={order} />
+                  </li>
                 ))}
               </ul>
             )}
