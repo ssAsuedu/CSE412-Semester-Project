@@ -44,9 +44,9 @@ const Orders = () => {
             ) : (
               <ul>
                 {activeOrders.map(order => (
-
-                  <OrderCard order={order} key={order.orderid} />
-
+                  <li key={order.orderid} className="order-item">
+                    <OrderCard order={order} />
+                  </li>
                 ))}
               </ul>
             )}
@@ -57,7 +57,7 @@ const Orders = () => {
               <p>No past orders.</p>
             ) : (
               <ul>
-                {activeOrders.map(order => (
+                {pastOrders.map(order => (
                   <li key={order.orderid} className="order-item">
                     <OrderCard order={order} />
                   </li>
