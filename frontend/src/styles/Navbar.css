@@ -43,7 +43,6 @@
 }
 
 .nav-btn:hover {
-  color: #8C1D40;
   text-decoration: underline;
 }
 
@@ -68,12 +67,17 @@
   cursor: pointer; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .navbar {
-    padding: 0 10px;
+    padding: 0 8px;
+    height: 60px;
   }
   .navbar-left {
     gap: 10px;
+  }
+  .logout-btn {
+    font-size: 13px;
+    padding: 8px;
   }
   .nav-btn {
     padding: 0;

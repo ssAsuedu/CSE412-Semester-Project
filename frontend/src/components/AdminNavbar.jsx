@@ -19,7 +19,7 @@ const AdminNavbar = () => {
         <button className="nav-btn" onClick={() => navigate('/admin')}>Operations Dashboard</button>
       </div>
       <div className="navbar-right">
-        <button className="nav-btn logout-btn" onClick={handleLogout}>Log Out</button>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
     </nav>
   );
